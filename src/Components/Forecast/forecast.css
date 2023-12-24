@@ -1,37 +1,37 @@
 .forecast-main {
     display: flex;
-    column-gap: 20px;
+    column-gap: 1.25rem;
     overflow: auto;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 .forecast-card {
-    width: 110px;
+    width: 6.875rem;
     display: flex;
     justify-content: space-around;
-    height: 200px;
+    height: 12.5rem;
     flex-shrink: 0;
-    border-radius: 11.385px;
+    border-radius: 0.75rem;
     border: 0.569px solid var(--radial-suhu, #FFF);
     flex-direction: column;
-    border-radius: 11.385px;
+    border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.20);
     filter: blur(0.5692583918571472px);
-    font-size: 20px;
-    padding: 10px 20px;
+    font-size: 1.25rem;
+    padding: 0.625rem 1.35rem;
 }
 
 .forecast-temp {
     color: #FFF;
     text-align: center;
     text-shadow: -1.139px 1.708px 0.569px rgba(0, 0, 0, 0.10);
-    font-size: 30px;
+    font-size: 1.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 .description-forecast {
-    height: 50px;
+    height: 3.125rem;
     display: flex;
     justify-content: center;
 }

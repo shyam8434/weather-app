@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    padding: 20px;
+    padding: 1.25rem;
 }
 .temprature-txt-container {
     display: flex;
@@ -11,7 +11,7 @@
 .temprature-txt {
     color: #FFF;
     font-family: Inter;
-    font-size: 164px;
+    font-size: 10.25rem;
     font-style: normal;
     font-weight: 100;
     line-height: 120%; /* 196.8px */
@@ -19,7 +19,7 @@
 .degree-txt {
     color: #FFF;
     font-family: Inter;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 120%; /* 38.4px */
@@ -29,7 +29,7 @@
     color: #FFF;
     text-shadow: -1.51px 2.26px 0.75px rgba(0, 0, 0, 0.10);
     font-family: Inter;
-    font-size: 36px;
+    font-size: 2.25rem;
     font-style: normal;
     font-weight: 300;
     line-height: 120%;
@@ -38,7 +38,7 @@
     color: #FFF;
     text-shadow: -1.51px 2.26px 0.75px rgba(0, 0, 0, 0.10);
     font-family: Inter;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 300;
     line-height: 120%;

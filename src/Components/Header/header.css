@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem;
 }
 .city-name {
     color: #FFF;
     text-shadow: -1.51px 2.26px 0.75px rgba(0, 0, 0, 0.10);
     font-family: Inter;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 300;
     line-height: 120%; /* 38.4px */
@@ -16,11 +16,11 @@
 .location-header {
     display: flex;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 1.25rem;
 
 }
 .search-container {
     display: flex;
     align-items: center;
-    column-gap: 15px;
+    column-gap: 0.938rem;
 }
