@@ -1,22 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import { Home } from './Components/Home';
+import { useFetchLocation } from './utils/global.utils';
 
 function App() {
+  const location = useFetchLocation();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header" >
+        <Home location={location}/>
       </header>
     </div>
   );

@@ -1,0 +1,21 @@
+.header-main {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.city-name {
+    color: #FFF;
+    text-shadow: -1.51px 2.26px 0.75px rgba(0, 0, 0, 0.10);
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 120%; /* 38.4px */
+}
+.location-header {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+}
