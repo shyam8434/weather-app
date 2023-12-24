@@ -1,77 +1,90 @@
-import { useEffect, useMemo, useState } from "react";
+import "./header.css";
+import { useMemo, useState } from "react";
 import frame from "../../Assets/Frame.svg";
 import search from "../../Assets/Search.svg";
-import "./header.css";
+import AsyncSelect from "react-select/async";
 
 const Header = ({ location, onChange }) => {
   const [showSearch, setShowSearch] = useState(false);
-  const [searchTxt, setSearchTxt] = useState("");
-  const [cityList, setCityList] = useState([]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      handleSearch(searchTxt);
-    }, [500]);
-    return () => clearTimeout(timer);
-  }, [searchTxt]);
+  const city = useMemo(() => {
+    return Object.keys(location || {}).length
+      ? `${location.name}, ${location.state}, ${location.country}`
+      : "";
+  }, [location]);
 
-  const handleSearch = (searchTxt) => {
-    if (searchTxt) {
-      fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${searchTxt}&limit=5&appid=${process.env.REACT_APP_WEATHER_KEY}`
-      )
-        .then((resp) => resp.json())
-        .then((result) => {
-          setCityList(result);
-        });
-    }
+
+  let timer = null;
+
+  const loadOptions = (inputValue) => {
+    return new Promise((resolve, reject) => {
+      clearTimeout(timer);
+      timer = setTimeout(async () => {
+        try {
+          const res = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${process.env.REACT_APP_WEATHER_KEY}`
+          );
+          const data = await res.json();
+
+          if (data.cod === "400") {
+            reject("No data")
+            return [];
+          }
+          data.forEach((element) => {
+            element.label = `${element.name}, ${element.state}, ${element.country}`;
+            element.value = element;
+          });
+          resolve(data);
+        } catch (error) {
+          console.error(error);
+          reject("No data");
+        }
+      }, 2000);
+    });
   };
 
-  const city = useMemo(
-    () => {
-      return Object.keys(location || {}).length
-        ? `${location.name}, ${location.state}, ${location.country}`
-        : "";
-    },
-    [location]
-  );
-
-  const handleGetWeather = (item) => {
-    onChange(item);
-  }
+  const handleOnSelect = (e) => {
+    onChange(e.value);
+    setShowSearch(false);
+  };
 
   return (
     <div className="header-main">
       <div className="location-header">
         <img src={frame} alt="Location" />
-        <span className="city-name">{city}</span>
-      </div>
-      <img
-        src={search}
-        alt="Location"
-        onClick={() => setShowSearch((prev) => !prev)}
-      />
-      {showSearch && (
-        <div>
-          <input
-            value={searchTxt}
-            placeholder="Search your location"
-            onChange={(e) => setSearchTxt(e.target.value)}
+        {showSearch ? (
+          <AsyncSelect
+            cacheOptions
+            loadOptions={loadOptions}
+            defaultOptions
+            autosize={true}
+            onChange={handleOnSelect}
+            width={300}
+            styles={{
+              menu: (base) => ({
+                ...base,
+                width: "max-content",
+                minWidth: "100%",
+                color: "black",
+              }),
+              container: (base) => ({
+                ...base,
+                width: "max-content",
+                minWidth: "300px",
+              }),
+            }}
           />
-          <div className="city-list-container">
-            {cityList.map((item) => {
-              return (
-                <div
-                  className="city-tag"
-                  onClick={() => handleGetWeather(item)}
-                >
-                  {`${item.name}, ${item.state}, ${item.country}`}{" "}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+        ) : (
+          <span className="city-name">{city}</span>
+        )}
+      </div>
+      <div className="search-container">
+        <img
+          src={search}
+          alt="Location"
+          onClick={() => setShowSearch((prev) => !prev)}
+        />
+      </div>
     </div>
   );
 };

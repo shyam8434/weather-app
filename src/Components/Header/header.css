@@ -19,3 +19,8 @@
     column-gap: 20px;
 
 }
+.search-container {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
