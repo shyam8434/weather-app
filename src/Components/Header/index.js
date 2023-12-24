@@ -8,9 +8,9 @@ const Header = ({ location, onChange }) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const city = useMemo(() => {
-    return Object.keys(location || {}).length
+    return location?.name
       ? `${location.name}, ${location.state}, ${location.country}`
-      : "";
+      : "Loaading...";
   }, [location]);
 
 
