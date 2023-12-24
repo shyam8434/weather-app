@@ -32,5 +32,16 @@ export const useFetchLocation = () => {
         .then((result) => setLocationDetail(result));
   }, [location]);
 
-  return { cordinate: location, locationDetail };
+  return { cordinate: location, locationDetail: {
+    ...locationDetail,
+    lat: locationDetail?.latitude,
+    lon: locationDetail?.longitude,
+    name: locationDetail?.city,
+    state: locationDetail?.principalSubdivision,
+    country: locationDetail?.countryName
+  } };
 };
+
+export const convertToCelcius = (temp) => {
+  return Number((temp || 0) - 273.15).toFixed(2)
+}

@@ -1,8 +1,8 @@
 .header-main {
-    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
 }
 .city-name {
     color: #FFF;

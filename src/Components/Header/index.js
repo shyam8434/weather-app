@@ -3,7 +3,7 @@ import frame from "../../Assets/Frame.svg";
 import search from "../../Assets/Search.svg";
 import "./header.css";
 
-const Header = ({ location, getWeather }) => {
+const Header = ({ location, onChange }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTxt, setSearchTxt] = useState("");
   const [cityList, setCityList] = useState([]);
@@ -29,15 +29,15 @@ const Header = ({ location, getWeather }) => {
 
   const city = useMemo(
     () => {
-      return Object.keys(location.locationDetail || {}).length
-        ? `${location.locationDetail.city}, ${location.locationDetail.countryName}`
+      return Object.keys(location || {}).length
+        ? `${location.name}, ${location.state}, ${location.country}`
         : "";
     },
     [location]
   );
 
   const handleGetWeather = (item) => {
-    getWeather(item);
+    onChange(item);
   }
 
   return (

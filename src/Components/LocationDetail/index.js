@@ -1,7 +1,7 @@
 import './locationDetail.css'
 
 const LocationDetail = ({weatherDetails}) => {
-    console.log(weatherDetails)
+    console.log('weatherDetails', weatherDetails)
     return (
         <div className="location-detail-main">
             <div className='temprature-txt-container'>
@@ -9,8 +9,8 @@ const LocationDetail = ({weatherDetails}) => {
                 <span className="degree-txt">° C</span>
             </div>
             <div className='date-container'>
-                <span className='date-txt'>17th Jun ‘21</span>
-                <span className='day-time-txt'>Thrusday   |   2:45 am</span>
+                <span className='date-txt'>{new Date().toDateString()}</span>
+                <span className='day-time-txt'>{new Date().toLocaleTimeString()}</span>
             </div>
         </div>
     )

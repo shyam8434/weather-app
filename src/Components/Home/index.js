@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import "./home.css";
 import LocationDetail from "../LocationDetail";
 import Header from "../Header";
+import ForeCast from "../Forecast";
 
 export const Home = ({ location }) => {
   const [weatherDetails, setWeather] = useState(null);
+  const [locationDetails, setLocationDetails] = useState(null);
 
   const fetchWeather = async (cityDetail) => {
     try {
       if (cityDetail) {
-        setWeather(null);
         fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${
             cityDetail?.latitude || cityDetail.lat
@@ -33,10 +34,24 @@ export const Home = ({ location }) => {
     }
   }, [location]);
 
+  useEffect(() => {
+    if (
+      location?.locationDetail &&
+      Object.keys(location?.locationDetail).length
+    )
+      setLocationDetails(location.locationDetail);
+  }, [location]);
+
+  const changeLocation = (locationData) => {
+    setLocationDetails(locationData);
+    fetchWeather(locationData);
+  };
+
   return (
     <div className="main">
-      <Header location={location} getWeather={fetchWeather} />
+      <Header location={locationDetails} onChange={changeLocation} />
       <LocationDetail weatherDetails={weatherDetails} />
+      <ForeCast location={locationDetails} />
     </div>
   );
 };
